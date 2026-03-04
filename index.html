@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Марат Дәрия Талғатқызы - Көмек сұраймыз</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      border-radius: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Background image fills whole card ── */
+    .card {
+      background-image: url('img/bg.jpeg');
+      background-size: cover;
+      background-position: center 20%;
+    }
+
+    /* ── Top section: name / age / diagnosis ── */
+    .top {
+      position: relative;
+      z-index: 2;
+      padding: 100px 24px 28px;
+      text-align: center;
+      /* subtle dark gradient so text is readable over photo */
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.55) 0%,
+          rgba(0, 0, 0, 0.25) 70%,
+          transparent 100%);
+    }
+
+    .name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      line-height: 1.1;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .age-badge {
+      display: inline-block;
+      background: #d4a84b;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 4px 14px;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .diagnosis-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .diagnosis-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      color: #ffffff;
+      background: #e8401a;
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-top: 6px;
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 8px;
+    }
+
+    /* ── Spacer: transparent middle so photo shows ── */
+    .spacer {
+      position: relative;
+      z-index: 1;
+      height: 220px;
+    }
+
+    /* ── Bottom panel: dark overlay with info ── */
+    .bottom {
+      position: relative;
+      z-index: 2;
+      padding: 28px 28px 28px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .text-block {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .description {
+      font-size: 20px;
+      color: #000000;
+      font-weight: 900;
+    }
+
+    .motto {
+      font-size: 20px;
+      color: #000000;
+      font-style: italic;
+      font-weight: 900;
+    }
+
+    /* ── Button ── */
+    @keyframes shine {
+      from {
+        left: -75%;
+      }
+
+      to {
+        left: 130%;
+      }
+    }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #e8401a, #c0392b);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 15px 34px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(192, 57, 43, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.35) 50%,
+          transparent 100%);
+      transform: skewX(-20deg);
+      pointer-events: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 14px 36px rgba(192, 57, 43, 0.65);
+    }
+
+    .btn:hover::after {
+      animation: shine 0.55s ease forwards;
+    }
+
+    .btn-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Info box ── */
+    .box {
+      width: 100%;
+      background: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 0px;
+      margin-top: 5px;
+      font-weight: 900;
+    }
+
+    .box-cols {
+      display: flex;
+      gap: 0;
+    }
+
+    .box-col {
+      flex: 1;
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .box-divider {
+      width: 1px;
+      background: rgba(0, 0, 0, 0.15);
+      align-self: stretch;
+    }
+
+    .box-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #d4a84b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .box-title img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .box-value {
+      font-size: 15px;
+      color: #1a1a1a;
+      line-height: 1.5;
+      word-break: break-all;
+    }
+
+    .box-footer {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 15px;
+      color: #1a1a1a;
+      text-align: center;
+    }
+
+    .btn-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* ── Mobile (≤ 480px) ── */
+    @media (max-width: 480px) {
+      body {
+        align-items: center;
+      }
+
+      .name {
+        font-size: 34px;
+      }
+
+      .diagnosis-label {
+        font-size: 20px;
+      }
+
+      .spacer {
+        height: 180px;
+      }
+
+      .bottom {
+        padding: 22px 20px 0px;
+      }
+
+      .description {
+        font-size: 19px;
+      }
+
+      .btn {
+        font-size: 20px;
+        padding: 13px 26px;
+      }
+    }
+
+    /* ── Very small phones (≤ 360px) ── */
+    @media (max-width: 360px) {
+      .name {
+        font-size: 26px;
+      }
+
+      .diagnosis-label {
+        font-size: 20px;
+      }
+
+      .spacer {
+        height: 140px;
+      }
+
+      .btn {
+        font-size: 16px;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      .motto {
+        font-size: 16px;
+      }
+
+      .box-value {
+        font-size: 13px;
+      }
+
+      .box-footer {
+        font-size: 13px;
+      }
+
+      .box {
+        padding: 5px 0px;
+      }
+    }
+
+    /* ── Desktop (≥ 768px) ── */
+    @media (min-width: 768px) {
+      .name {
+        font-size: 34px;
+      }
+
+      .diagnosis-label {
+        font-size: 25px;
+      }
+
+      .spacer {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <!-- Top: name / age / diagnosis -->
+    <div class="top">
+      <div class="name">Марат Дәрия Талғатқызы</div>
+      <div class="row">
+        <span class="age-badge">1 жас 11 ай</span>
+        <span class="diagnosis-label">Диагноз:</span>
+      </div>
+      <div class="diagnosis-name">Рак 4 степени<br>Нейробластома</div>
+    </div>
+
+    <!-- Transparent spacer so photo shows in the middle -->
+    <div class="spacer"></div>
+
+    <!-- Bottom: description + motto + button -->
+    <div class="bottom">
+      <div class="text-block">
+        <p class="description">
+          Қызымның өмірі қазір сіздердің<br />
+          қолдауларыңызға байланысты.<br />
+          Еміне көмек сұраймыз.
+        </p>
+        <p class="motto">Әрбір садақа – үміт, <br> әрбір қолдау – өмір.</p>
+      </div>
+      <a href="https://pay.kaspi.kz/pay/2qt9fn5a" class="btn">
+        <span class="btn-icon"><img src="img/kaspi_logo.png" alt="Kaspi" /></span>
+        Садақа саламыз
+      </a>
+
+      <div class="box">
+        <div class="box-cols">
+          <div class="box-col">
+            <div class="box-title">Halyk bank</div>
+            <div class="box-value">4003 0351 8597 4412</div>
+          </div>
+          <div class="box-divider"></div>
+          <div class="box-col">
+            <div class="box-title">Freedom bank</div>
+            <div class="box-value">4002 8900 3036 4420</div>
+          </div>
+        </div>
+        <div class="box-footer">
+          Для переводов по номеру телефона: <br>
+          <span>+7 701 511 90 63 (Талғат М.)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
