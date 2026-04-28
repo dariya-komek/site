@@ -693,13 +693,8 @@
       height: 100%;
       background: linear-gradient(90deg, #8bb650, #b5e06a);
       border-radius: 50px;
-      width: 30%;
-      animation: fill 1.5s ease forwards;
-    }
-
-    @keyframes fill {
-      from { width: 0; }
-      to { width: 30%; }
+      width: 0%;
+      transition: width 1.5s ease;
     }
 
     /* ─── STICKY DONATE BAR ─── */
@@ -745,14 +740,14 @@
     /* ─── LANDING PAGE ─── */
     #landing { font-family: 'Open Sans', sans-serif; }
     #landing .card {
-      position: relative; width: 100%; height: 100vh;
+      position: relative; width: 100%;
       border-radius: 0; overflow: hidden;
       display: flex; flex-direction: column;
-      background-image: url('img/bg.jpeg');
-      background-size: cover; background-position: center -50px;
+      background-image: url('img/img5.jpeg');
+      background-size: cover; background-position: center -150px;
     }
     #landing .top {
-      position: relative; z-index: 2; padding: 100px 24px 28px;
+      position: relative; z-index: 2; padding: 100px 24px 128px;
       text-align: center;
       background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 70%, transparent 100%);
     }
@@ -864,7 +859,7 @@
     <div class="top">
       <div class="name">Марат Дәрия Талғатқызы</div>
       <div class="row">
-        <span class="age-badge">1 жас 11 ай</span>
+        <span class="age-badge">2 жас</span>
         <span class="diagnosis-label">Диагноз:</span>
       </div>
       <div class="diagnosis-name">Рак 4 степени<br>Нейробластома</div>
@@ -894,6 +889,10 @@
             <div class="box-title">Freedom bank</div>
             <div class="box-value">4002 8900 3036 4420</div>
           </div>
+        </div>
+        <div class="box-col">
+            <div class="box-title">Kaspi bank</div>
+            <div class="box-value">4400 4302 7149 4707</div>
         </div>
         <div class="box-footer">
           Для переводов по номеру телефона: <br>
@@ -973,15 +972,15 @@
   <div class="story-card">
     <span class="story-step">Сбор средств</span>
     <h3>Помогите нам достичь цели</h3>
-    <div class="progress-wrap" style="max-width:100%;margin:16px 0 0;padding:0;">
+    <div class="progress-wrap" style="max-width:100%;margin:16px 0 0;padding:0;" data-collected="76" data-goal="254">
       <div class="progress-labels" style="color:#555;font-size:18px;">
-        <span>Собрано: <strong>76 млн ₸</strong></span>
-        <span>Цель: <strong>254 млн ₸</strong></span>
+        <span>Собрано: <strong id="prog-collected"></strong></span>
+        <span>Цель: <strong id="prog-goal"></strong></span>
       </div>
       <div class="progress-bar" style="background:rgba(0,0,0,0.1);height:14px;">
-        <div class="progress-fill" style="width:30%;"></div>
+        <div class="progress-fill" id="prog-fill" style="width:0%;"></div>
       </div>
-      <div style="text-align:center;margin-top:12px;font-size:17px;color:#888;">Осталось собрать: <strong style="color:#e8401a;">178 млн ₸</strong></div>
+      <div style="text-align:center;margin-top:12px;font-size:17px;color:#888;">Осталось собрать: <strong id="prog-remaining" style="color:#e8401a;"></strong></div>
     </div>
     <img src="img/img4.jpeg" alt="Расчёт стоимости лечения" onclick="openLightbox(this)" style="width:100%;border-radius:12px;margin-top:16px;display:block;cursor:zoom-in;" />
   </div>
@@ -1047,6 +1046,12 @@
       <h3>Freedom банк</h3>
       <div class="value" id="freedomNum">4002 8900 3036 4420</div>
       <button class="copy-btn" onclick="copyText('freedomNum', this)">Скопировать номер карты</button>
+    </div>
+    <div class="payment-card">
+      <div class="card-icon">💳</div>
+      <h3>Kaspi банк</h3>
+      <div class="value" id="kaspiNum">4400 4302 7149 4707</div>
+      <button class="copy-btn" onclick="copyText('kaspiNum', this)">Скопировать номер карты</button>
     </div>
     <div class="payment-card">
       <div class="card-icon">📞</div>
@@ -1116,6 +1121,23 @@
       if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
+  function updateProgress() {
+    const wrap = document.querySelector('.progress-wrap[data-collected]');
+    if (!wrap) return;
+    const collected = parseFloat(wrap.dataset.collected);
+    const goal = parseFloat(wrap.dataset.goal);
+    const pct = Math.min(100, (collected / goal) * 100);
+    document.getElementById('prog-collected').textContent = collected + ' млн ₸';
+    document.getElementById('prog-goal').textContent = goal + ' млн ₸';
+    document.getElementById('prog-remaining').textContent = (goal - collected).toFixed(0) + ' млн ₸';
+    const fill = document.getElementById('prog-fill');
+    fill.style.width = '0%';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      fill.style.width = pct.toFixed(1) + '%';
+    }));
+  }
+  document.addEventListener('DOMContentLoaded', updateProgress);
+
   function openLightbox(img) {
     const overlay = document.getElementById('lightbox');
     document.getElementById('lightbox-img').src = img.src;
