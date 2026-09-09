@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Дария Талғатқызы — Помогите спасти дочь от нейробластомы</title>
+  <title>Дария Талғатқызы, 2 года — сбор на лечение нейробластомы 4 стадии</title>
+  <meta name="description" content="Дарии 2 года 5 месяцев, нейробластома 4 стадии. Лечение в Барселоне. Долг перед клиникой — 90 млн ₸. Помогите довести лечение до конца." />
+  <meta name="theme-color" content="#1a1a2e" />
+  <link rel="canonical" href="https://dariya-komek.github.io/site/" />
+
+  <!-- Превью при отправке ссылки в WhatsApp / Telegram / Instagram -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dariya-komek.github.io/site/" />
+  <meta property="og:title" content="Помогите спасти Дарию — нейробластома 4 стадии" />
+  <meta property="og:description" content="Дарии 2 года 5 месяцев. Лечение в Барселоне. Не хватает 90 млн ₸, чтобы довести лечение до конца." />
+  <meta property="og:image" content="https://dariya-komek.github.io/site/img/img1.jpeg" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap');
 
@@ -849,6 +861,155 @@
       #landing .name { font-size: 34px; }
       #landing .diagnosis-label { font-size: 25px; }
     }
+    /* ─── VIDEO SECTION ─── */
+    .video-section {
+      background: #fff;
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .video-section h2 {
+      font-size: 30px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .video-section .video-sub {
+      color: #777;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .video-wrap {
+      max-width: 380px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      line-height: 0;
+    }
+
+    .video-wrap video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+
+    /* ─── СУММЫ СБОРА ─── */
+    .amount-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .amount-item {
+      flex: 1;
+      min-width: 150px;
+      background: #f9f6f1;
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: center;
+      border-top: 4px solid #1a1a2e;
+    }
+
+    .amount-item.paid { border-top-color: #8bb650; }
+    .amount-item.need { border-top-color: #e8401a; background: #fff2ee; }
+
+    .amount-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .amount-value {
+      font-size: 24px;
+      font-weight: 900;
+      color: #1a1a2e;
+      line-height: 1.2;
+    }
+
+    .amount-item.need .amount-value { color: #e8401a; }
+
+    .amount-usd {
+      font-size: 14px;
+      color: #999;
+      margin-top: 2px;
+    }
+
+    /* ─── ДОКУМЕНТЫ ─── */
+    .docs-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .docs-grid figure {
+      flex: 1;
+      min-width: 200px;
+      margin: 0;
+    }
+
+    .docs-grid img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      cursor: zoom-in;
+      border: 1px solid #eee;
+    }
+
+    .docs-grid figcaption {
+      font-size: 13px;
+      color: #999;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* ─── ПОДПИСЬ РОДИТЕЛЕЙ ─── */
+    .story-card .signature {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid #eee;
+      font-style: italic;
+      color: #1a1a2e;
+      font-weight: 600;
+    }
+
+    .story-card p + p { margin-top: 14px; }
+
+    /* ─── СТАТУС В ПЛАНЕ ЛЕЧЕНИЯ ─── */
+    .treatment-step:nth-child(4) .step-num { background: #fde0d0; color: #a03a10; }
+    .treatment-step:nth-child(5) .step-num { background: #cfe4f5; color: #14507d; }
+
+    .step-status {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    .step-status.done { background: #e8f5d8; color: #4a7020; }
+    .step-status.now  { background: #cfe4f5; color: #14507d; }
+    .step-status.next { background: #fde0d0; color: #a03a10; }
+
+    @media (max-width: 540px) {
+      .amount-item { min-width: 100%; }
+      .video-section { padding: 48px 16px; }
+      .video-section h2 { font-size: 25px; }
+    }
+
   </style>
 </head>
 <body>
@@ -859,7 +1020,7 @@
     <div class="top">
       <div class="name">Марат Дәрия Талғатқызы</div>
       <div class="row">
-        <span class="age-badge">2 жас</span>
+        <span class="age-badge">2 жас 5 ай</span>
         <span class="diagnosis-label">Диагноз:</span>
       </div>
       <div class="diagnosis-name">Рак 4 степени<br>Нейробластома</div>
@@ -911,12 +1072,12 @@
     <div class="hero-text">
       <div class="hero-badge">Срочный сбор</div>
       <h1>Помогите спасти нашу дочь от <span>нейробластомы</span></h1>
-      <p class="hero-sub">Дария, 1 год 11 месяцев — борется с раком 4-й стадии. Каждый тенге — это шаг к её жизни.</p>
+      <p class="hero-sub">Дарии 2 года 5 месяцев. Мы прошли Корею и Барселону, опухоль практически отступила. Чтобы довести лечение до конца, нам не хватает совсем немного.</p>
 
       <div class="urgency-box">
-        <div class="urgency-label">Нашей дочери нужна ваша помощь</div>
-        <div class="urgency-amount"><span>Нейробластома</span><br> 4 стадия</div>
-        <div class="urgency-date">Каждый день на счету</div>
+        <div class="urgency-label">Долг перед клиникой</div>
+        <div class="urgency-amount"><span>90 млн ₸</span><br> ≈ $194 тыс</div>
+        <div class="urgency-date">Лечение по плану — до конца января 2027 года</div>
       </div>
     </div>
 
@@ -932,14 +1093,14 @@
 <!-- ─── DONATION ─── -->
 <!-- ─── STORY ─── -->
 <section class="story-section">
-  <div class="section-label">История Дарии</div>
-  <h2>Путь маленькой девочки к диагнозу</h2>
+  <div class="section-label">История Дарии · обновлено в сентябре 2026</div>
+  <h2>Путь маленькой девочки длиной в год</h2>
 
   <div class="story-card">
     <span class="story-step">Этап 1 — Начало</span>
     <h3>Мы думали, что у нас просто лезут «зубки»</h3>
     <p>
-      С конца июля ребёнок стал очень беспокойным, плакал по ночам. Вызвали скорую, сделали УЗИ брюшной полости, сдавали анализы — патологий не выявлено.
+      С конца июля 2025 года ребёнок стал очень беспокойным, плакал по ночам. Вызвали скорую, сделали УЗИ брюшной полости, сдавали анализы — патологий не выявлено.
       Но боль усиливалась, малышка не спала по ночам, плакала сильно. И только в начале августа, когда дочка не смогла вставать на ножки, врачи в инфекционной больнице сделали КТ брюшной полости и выявили <strong>гигантскую опухоль размером 11 см</strong> забрюшинного пространства.
     </p>
   </div>
@@ -947,50 +1108,137 @@
   <div class="story-card">
     <span class="story-step">Этап 2 — Диагноз</span>
     <h3>Диагноз, который перевернул нашу жизнь</h3>
-    <p>Обследования подтвердили самое страшное:</p>
+    <p>Дария заболела в августе 2025 года, в возрасте 1 года и 4 месяцев. Обследования подтвердили самое страшное:</p>
     <ul class="timeline">
-      <li><div class="dot"></div>10 августа 2025 г. — в отделении онкологии г. Астана поставлен диагноз: <strong>нейробластома 4 стадии</strong></li>
+      <li><div class="dot"></div>10 августа 2025 г. — в отделении онкологии г. Астана поставлен диагноз: <strong>нейробластома 4 стадии</strong> — опухоль в брюшной полости</li>
       <li><div class="dot"></div>11 августа — вылетели в г. Сеул, клиника Северанс</li>
-      <li><div class="dot"></div>Сеул подтвердил: нейробластома высокого риска 4 стадии</li>
+      <li><div class="dot"></div>Сеул подтвердил: нейробластома высокого риска, 4 стадия</li>
       <li><div class="dot"></div>Протокол лечения — 2 года</li>
-      <li><div class="dot"></div>Получили 4 курса химиотерапии</li>
-      <li><div class="dot"></div>Из-за сильных побочных эффектов у Дарии произошла <strong>остановка сердца</strong></li>
-      <li><div class="dot"></div>34 дней в реанимации</li>
     </ul>
   </div>
 
   <div class="story-card">
-    <span class="story-step">Этап 3 — Шанс, за который мы боремся</span>
-    <h3>Барселона — последняя надежда</h3>
-    <p>
-      Вследствие остановки сердца мы были вынуждены сменить клинику и продолжить лечение в госпитале г. Барселона.
-      Сейчас врачи дают нам <strong>благоприятные прогнозы</strong>, но для продолжения лечения нужны огромные средства.
-      Это единственный шанс спасти Дарию.
-    </p>
+    <span class="story-step">Этап 3 — Корея</span>
+    <h3>Шесть месяцев борьбы и три реанимации</h3>
+    <p>В Корее мы лечились 6 месяцев и прошли 4 курса химиотерапии. Из-за осложнений дыхания трижды попадали в реанимацию.</p>
+    <ul class="timeline">
+      <li><div class="dot"></div>Последний раз — <strong>34 дня под ИВЛ</strong></li>
+      <li><div class="dot"></div>Остановка сердца на <strong>1 час</strong></li>
+      <li><div class="dot"></div>Отказали почки и лёгкие</li>
+      <li><div class="dot"></div>Подключали аппарат ЭКМО и диализ</li>
+    </ul>
+    <p>Но благодаря Аллаху и реаниматологам <strong>Дариюша выкарабкалась</strong>.</p>
   </div>
 
   <div class="story-card">
-    <span class="story-step">Сбор средств</span>
-    <h3>Помогите нам достичь цели</h3>
-    <div class="progress-wrap" style="max-width:100%;margin:16px 0 0;padding:0;" data-collected="76" data-goal="254">
+    <span class="story-step">Этап 4 — Барселона</span>
+    <h3>Опухоль практически отступила</h3>
+    <p>С марта 2026 года мы лечимся в детском госпитале Sant Joan de Déu в Барселоне. За это время пройдено:</p>
+    <ul class="timeline">
+      <li><div class="dot"></div>6 циклов химио-иммунотерапии</li>
+      <li><div class="dot"></div>Операция по удалению опухоли</li>
+      <li><div class="dot"></div>Лучевая терапия</li>
+    </ul>
+    <p><strong>Положительная динамика имеется, опухоль практически отступила.</strong> Нам предстоит пройти ещё <strong>5 циклов химио-иммунотерапии</strong> — по плану до конца января 2027 года.</p>
+  </div>
+
+  <div class="story-card">
+    <span class="story-step">Этап 5 — Реабилитация</span>
+    <h3>Дария заново учится ходить</h3>
+    <p>
+      В прошлом году из-за опухоли у нашей малышки отказали ноги. Сейчас она проходит реабилитацию, и результаты хорошие — <strong>Дария начала ползать и вставать на ножки</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ─── VIDEO ─── -->
+<section class="video-section">
+  <div class="section-label" style="text-align:center;">Видео</div>
+  <h2>Дария сегодня</h2>
+  <p class="video-sub">Наш путь ещё не окончен — впереди ещё много лечения</p>
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata" poster="img/video-poster.jpg">
+      <source src="video/dariya.mp4" type="video/mp4" />
+      Ваш браузер не поддерживает видео. <a href="video/dariya.mp4">Скачать видео</a>
+    </video>
+  </div>
+</section>
+
+<!-- ─── СБОР СРЕДСТВ ─── -->
+<section class="story-section" id="fundraising">
+  <div class="section-label">Сбор средств</div>
+  <h2>Сколько нужно и сколько уже собрано</h2>
+
+  <div class="story-card">
+    <div class="amount-grid">
+      <div class="amount-item">
+        <div class="amount-label">Бюджет лечения</div>
+        <div class="amount-value">431 млн ₸</div>
+        <div class="amount-usd">≈ $933 тыс</div>
+      </div>
+      <div class="amount-item paid">
+        <div class="amount-label">Оплачено</div>
+        <div class="amount-value">341 млн ₸</div>
+        <div class="amount-usd">≈ $739 тыс</div>
+      </div>
+      <div class="amount-item need">
+        <div class="amount-label">Долг перед клиникой</div>
+        <div class="amount-value">90 млн ₸</div>
+        <div class="amount-usd">≈ $194 тыс</div>
+      </div>
+    </div>
+
+    <div class="progress-wrap" style="max-width:100%;margin:0;padding:0;" data-collected="341" data-goal="431">
       <div class="progress-labels" style="color:#555;font-size:18px;">
-        <span>Собрано: <strong id="prog-collected"></strong></span>
-        <span>Цель: <strong id="prog-goal"></strong></span>
+        <span>Оплачено: <strong id="prog-collected"></strong></span>
+        <span>Бюджет: <strong id="prog-goal"></strong></span>
       </div>
       <div class="progress-bar" style="background:rgba(0,0,0,0.1);height:14px;">
         <div class="progress-fill" id="prog-fill" style="width:0%;"></div>
       </div>
       <div style="text-align:center;margin-top:12px;font-size:17px;color:#888;">Осталось собрать: <strong id="prog-remaining" style="color:#e8401a;"></strong></div>
     </div>
-    <img src="img/img4.jpeg" alt="Расчёт стоимости лечения" onclick="openLightbox(this)" style="width:100%;border-radius:12px;margin-top:16px;display:block;cursor:zoom-in;" />
+
+    <div class="docs-grid">
+      <figure>
+        <img src="img/budget2026.jpg" alt="Счёт госпиталя Sant Joan de Déu" onclick="openLightbox(this)" />
+        <figcaption>Счёт госпиталя Sant Joan de Déu (Барселона) от 07.08.2026 — 806 777,93 €</figcaption>
+      </figure>
+      <figure>
+        <img src="img/summa.jpg" alt="Актуальная сумма сбора" onclick="openLightbox(this)" />
+        <figcaption>Актуальная сумма сбора на сентябрь 2026 года</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <span class="story-step">Что мы уже сделали</span>
+    <h3>Мы отдали всё, что у нас было</h3>
+    <ul class="timeline">
+      <li><div class="dot"></div>Продали квартиру в Астане</li>
+      <li><div class="dot"></div>Продали машину</li>
+      <li><div class="dot"></div>Истратили все сбережения</li>
+      <li><div class="dot"></div>Обращались во все фонды и крупные предприятия</li>
+      <li><div class="dot"></div>С прошлого года ведём сбор в Instagram</li>
+    </ul>
+    <p>Благодаря неравнодушным людям наша малышка продолжает лечение. Но в данный момент сборы сильно упали, а долг перед клиникой растёт.</p>
+    <p>Благотворительные фонды, а также Министерство здравоохранения РК, к сожалению, отказывают в поддержке — данное заболевание не включено в перечень для финансирования лечения за рубежом.</p>
+  </div>
+
+  <div class="story-card">
+    <span class="story-step">Обращение родителей</span>
+    <h3>Ваша поддержка способна подарить нашей малышке жизнь</h3>
+    <p>С огромной болью и надеждой мы обращаемся к Вам за помощью — оказать содействие в покрытии стоимости лечения нашей дочери и тем самым дать шанс на полное исцеление.</p>
+    <p>Мы Дариюшу ждали 8 лет, и получилось с шестого раза ЭКО. У нас есть старшая дочь Мариям, ей 10 лет.</p>
+    <p class="signature">С большой надеждой и верой,<br />родители Дарии — Талғат и Айжан</p>
   </div>
 </section>
 
 <!-- ─── DIAGNOSIS HIGHLIGHT ─── -->
 <div class="diagnosis-box">
   <div class="label">Официальный диагноз</div>
-  <h2>Нейробластома, <span>4-я стадия</span><br />с метастазами</h2>
-  <p>Подтверждено специалистами. <br> Без лечения — нет шанса. <br> С лечением — есть надежда.</p>
+  <h2>Нейробластома высокого риска,<br /><span>4-я стадия</span></h2>
+  <p>Госпиталь Sant Joan de Déu, Барселона. <br> Опухоль практически отступила. <br> Осталось довести лечение до конца — до января 2027 года.</p>
 </div>
 
 <!-- ─── TREATMENT PLAN ─── -->
@@ -1000,17 +1248,32 @@
     <div class="treatment-step">
       <div class="step-num">1</div>
       <h3>Химиотерапия</h3>
-      <p>Интенсивные курсы химиотерапии для уменьшения опухоли и метастазов</p>
+      <p>4 курса в клинике Северанс, Сеул</p>
+      <span class="step-status done">Пройдено</span>
     </div>
     <div class="treatment-step">
       <div class="step-num">2</div>
       <h3>Операция</h3>
-      <p>Хирургическое удаление первичной опухоли</p>
+      <p>Хирургическое удаление опухоли в Барселоне</p>
+      <span class="step-status done">Пройдено</span>
     </div>
     <div class="treatment-step">
       <div class="step-num">3</div>
-      <h3>Радиотерапия</h3>
-      <p>Облучение поражённых зон для уничтожения оставшихся раковых клеток</p>
+      <h3>Лучевая терапия</h3>
+      <p>Облучение поражённых зон</p>
+      <span class="step-status done">Пройдено</span>
+    </div>
+    <div class="treatment-step">
+      <div class="step-num">4</div>
+      <h3>Химио-иммунотерапия</h3>
+      <p>6 циклов пройдено, ещё 5 циклов — до конца января 2027 года</p>
+      <span class="step-status next">Осталось 5 циклов</span>
+    </div>
+    <div class="treatment-step">
+      <div class="step-num">5</div>
+      <h3>Реабилитация</h3>
+      <p>Дария заново учится ползать и вставать на ножки</p>
+      <span class="step-status now">Идёт сейчас</span>
     </div>
   </div>
 </section>
