@@ -668,18 +668,23 @@ footer {
 }
 
 /* ─── LANDING PAGE ─── */
-#landing { font-family: 'Open Sans', sans-serif; }
+/* --w — ширина фото-карточки; от неё считаются масштаб и обрезка фото */
+#landing { font-family: 'Open Sans', sans-serif; background: #1a1a2e; --w: min(100vw, 520px); }
 #landing .card {
-  position: relative; width: 100%;
+  position: relative; width: 100%; max-width: var(--w); margin: 0 auto;
   border-radius: 0; overflow: hidden;
   display: flex; flex-direction: column;
+  background-color: #1a1a2e;
   background-image: url('../img/img5.jpeg');
-  background-size: cover; background-position: center -150px;
+  background-repeat: no-repeat;
+  /* верх фото (стена, шарики) обрезан — сверху видно голову и тело Дарии */
+  background-size: calc(var(--w) * 1.5) auto;
+  background-position: center calc(var(--w) * -1.46);
 }
 #landing .top {
-  position: relative; z-index: 2; padding: 100px 24px 128px;
+  position: relative; z-index: 2; padding: 48px 16px 20px;
   text-align: center;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 70%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(26,26,46,0) 0%, rgba(26,26,46,0.75) 35%, #1a1a2e 100%);
 }
 #landing .name {
   font-family: 'Montserrat', sans-serif; font-weight: 900;
@@ -707,7 +712,7 @@ footer {
   text-transform: uppercase; line-height: 1.2; margin-top: 6px;
   display: inline-block; padding: 4px 14px; border-radius: 8px;
 }
-#landing .spacer { position: relative; z-index: 1; flex: 1; min-height: 40px; }
+#landing .spacer { position: relative; z-index: 1; height: var(--w); }
 #landing .bottom {
   position: relative; z-index: 2; padding: 28px 28px 28px;
   text-align: center; margin-top: auto;
@@ -1037,4 +1042,19 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) {
   .donate-amount.popular, .donate-amount::after, .donate-other::after { animation: none; }
+}
+
+/* ─── ГЛАВНЫЙ ЭКРАН: планшет и компьютер ─── */
+@media (min-width: 521px) {
+  #landing .landing-wrap { padding-top: 24px; }
+  #landing .card { border-radius: 20px; }
+}
+@media (min-width: 1000px) {
+  #landing { --w: 440px; }
+  #landing .landing-wrap {
+    display: flex; align-items: center; justify-content: center; gap: 40px;
+    max-width: 1040px; margin: 0 auto; padding: 40px 24px;
+  }
+  #landing .card { flex: 0 0 var(--w); margin: 0; }
+  #landing .bottom { flex: 1; max-width: 520px; padding: 0; }
 }
