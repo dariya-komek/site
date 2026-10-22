@@ -682,107 +682,32 @@ footer {
   background-position: center calc(var(--w) * -1.46);
 }
 #landing .top {
-  position: relative; z-index: 2; padding: 48px 16px 20px;
+  position: relative; z-index: 2; padding: 52px 20px 22px;
   text-align: center;
-  background: linear-gradient(to bottom, rgba(26,26,46,0) 0%, rgba(26,26,46,0.75) 35%, #1a1a2e 100%);
+  background: linear-gradient(to bottom, rgba(26,26,46,0) 0%, rgba(26,26,46,0.8) 30%, #1a1a2e 100%);
 }
-#landing .name {
+#landing .headline {
   font-family: 'Montserrat', sans-serif; font-weight: 900;
-  font-size: 30px; line-height: 1.1; color: #fff;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  font-size: 26px; line-height: 1.2; color: #fff; margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
-#landing .row {
-  display: flex; align-items: center; gap: 10px;
-  flex-wrap: wrap; justify-content: center; margin-top: 12px;
-}
-#landing .age-badge {
-  display: inline-block; background: #d4a84b; color: #fff;
-  font-family: 'Montserrat', sans-serif; font-weight: 700;
-  font-size: 20px; padding: 4px 14px; border-radius: 8px; letter-spacing: 0.5px;
-}
-#landing .diagnosis-label {
-  font-family: 'Montserrat', sans-serif; font-weight: 900;
-  font-size: 22px; color: #fff; text-transform: uppercase;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-}
-#landing .diagnosis-name {
-  font-family: 'Montserrat', sans-serif; font-weight: 900;
-  font-size: 26px; color: #fff; background: #e8401a;
-  text-transform: uppercase; line-height: 1.2; margin-top: 6px;
-  display: inline-block; padding: 4px 14px; border-radius: 8px;
-}
-#landing .spacer { position: relative; z-index: 1; height: var(--w); }
+#landing .headline span { color: #b5e06a; white-space: nowrap; }
+#landing .debt { font-size: 17px; font-weight: 600; line-height: 1.4; color: rgba(255,255,255,0.92); }
+#landing .debt strong { color: #f0c040; font-weight: 900; font-size: 21px; white-space: nowrap; }
+#landing .who { margin-top: 14px; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.7); }
+#landing .who b { color: #fff; font-weight: 600; }
+/* высота открытой части фото над надписями (лицо Дарии) */
+#landing .spacer { position: relative; z-index: 1; height: calc(var(--w) * 0.42); }
 #landing .bottom {
   position: relative; z-index: 2; padding: 28px 28px 28px;
   text-align: center; margin-top: auto;
 }
-#landing .text-block {
-  background: rgba(255,255,255,0.7); border-radius: 12px;
-  padding: 14px 16px; margin-bottom: 14px;
-}
-#landing .description { font-size: 20px; color: #000; font-weight: 900; }
-#landing .motto { font-size: 20px; color: #000; font-style: italic; font-weight: 900; }
 @keyframes shine { from { left: -75%; } to { left: 130%; } }
-#landing .btn {
-  position: relative; overflow: hidden; display: inline-flex;
-  align-items: center; gap: 10px;
-  background: linear-gradient(135deg, #e8401a, #c0392b); color: #fff;
-  font-family: 'Montserrat', sans-serif; font-weight: 700;
-  font-size: 20px; padding: 15px 34px; border-radius: 50px;
-  border: none; cursor: pointer; text-decoration: none;
-  box-shadow: 0 6px 20px rgba(192,57,43,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-#landing .btn::after {
-  content: ''; position: absolute; top: 0; left: -75%;
-  width: 50%; height: 100%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
-  transform: skewX(-20deg); pointer-events: none;
-}
-#landing .btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 14px 36px rgba(192,57,43,0.65); }
-#landing .btn:hover::after { animation: shine 0.55s ease forwards; }
-#landing .btn-icon {
-  width: 32px; height: 32px; border-radius: 8px; overflow: hidden;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-#landing .btn-icon img { width: 100%; height: 100%; object-fit: contain; }
-#landing .box {
-  width: 100%; background: #fff; border: none;
-  border-radius: 12px; padding: 12px 0; margin-top: 5px; font-weight: 900;
-}
-#landing .box-cols { display: flex; gap: 0; }
-#landing .box-col { flex: 1; text-align: center; padding: 0 8px; }
-#landing .box-divider { width: 1px; background: rgba(0,0,0,0.15); align-self: stretch; }
-#landing .box-title {
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
-  color: #d4a84b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
-}
-#landing .box-value { font-size: 15px; color: #1a1a1a; line-height: 1.5; word-break: break-all; }
-#landing .box-footer {
-  margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.12);
-  font-size: 15px; color: #1a1a1a; text-align: center;
-}
-@media (max-width: 480px) {
-  #landing .name { font-size: 34px; }
-  #landing .diagnosis-label { font-size: 20px; }
-  #landing .bottom { padding: 22px 20px 0; }
-  #landing .description { font-size: 19px; }
-  #landing .btn { font-size: 20px; padding: 13px 26px; }
-}
 @media (max-width: 360px) {
-  #landing .name { font-size: 26px; }
-  #landing .btn { font-size: 16px; }
-  #landing .description { font-size: 16px; }
-  #landing .motto { font-size: 16px; }
-  #landing .box-value { font-size: 13px; }
-  #landing .box-footer { font-size: 13px; }
-  #landing .box { padding: 5px 0; }
+  #landing .headline { font-size: 22px; }
 }
 @media (min-width: 768px) {
-  #landing .name { font-size: 34px; }
-  #landing .diagnosis-label { font-size: 25px; }
+  #landing .headline { font-size: 28px; }
 }
 /* ─── VIDEO SECTION ─── */
 .video-section {
@@ -950,14 +875,7 @@ footer {
   padding: 22px 18px 18px;
   box-shadow: 0 10px 34px rgba(0,0,0,0.3);
 }
-#landing .headline {
-  font-family: 'Montserrat', sans-serif; font-weight: 900;
-  font-size: 22px; line-height: 1.25; color: #1a1a2e; margin-bottom: 10px;
-}
-#landing .headline span { color: #5a8a30; }
-#landing .debt { font-size: 16px; font-weight: 600; color: #555; }
-#landing .debt strong { color: #e8401a; font-weight: 900; font-size: 20px; }
-#landing .raise { margin: 14px 0 20px; }
+#landing .raise { margin: 0 0 18px; }
 #landing .raise-labels {
   display: flex; justify-content: space-between; gap: 10px;
   font-size: 14px; color: #666; margin-bottom: 6px;
@@ -1038,7 +956,6 @@ footer {
 @media (max-width: 480px) {
   .donate-amounts { grid-template-columns: repeat(2, 1fr); }
   #landing .bottom { padding: 20px 12px 24px; }
-  #landing .headline { font-size: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .donate-amount.popular, .donate-amount::after, .donate-other::after { animation: none; }
