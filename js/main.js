@@ -18,6 +18,59 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+// Кнопки сумм: просим у сервера ссылку Kaspi с уже введённой суммой.
+// Если сервер не ответил, открываем обычную ссылку Kaspi — сумму человек введёт сам.
+const DONATE_API = 'https://dariyakomek.kz/api/donate';
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+  (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
+
+function donateClientId() {
+  try {
+    let id = sessionStorage.getItem('donate-client');
+    if (!id) {
+      id = Math.random().toString(36).slice(2) + Date.now().toString(36);
+      sessionStorage.setItem('donate-client', id);
+    }
+    return id;
+  } catch (e) {
+    return '';
+  }
+}
+
+async function requestKaspiLink(amount) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 5000);
+  try {
+    const resp = await fetch(DONATE_API, {
+      method: 'POST',
+      body: JSON.stringify({ amount, client: donateClientId() }),
+      signal: ctrl.signal,
+    });
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    return /^https:\/\/pay\.kaspi\.kz\//.test(data.url) ? data.url : null;
+  } catch (e) {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+document.querySelectorAll('.donate-amount[data-amount]').forEach(btn => {
+  btn.addEventListener('click', async e => {
+    e.preventDefault();
+    if (btn.classList.contains('loading')) return;
+    // На компьютере вкладку открываем сразу, иначе браузер заблокирует её как всплывающее окно
+    const tab = isMobile ? null : window.open('', '_blank');
+    if (tab) tab.opener = null;
+    btn.classList.add('loading');
+    const url = (await requestKaspiLink(Number(btn.dataset.amount))) || btn.href;
+    btn.classList.remove('loading');
+    if (tab) tab.location.href = url;
+    else window.location.href = url;
+  });
+});
+
 function animateFill(fill, pct) {
   fill.style.width = '0%';
   requestAnimationFrame(() => requestAnimationFrame(() => {
