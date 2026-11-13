@@ -158,7 +158,7 @@ function updateProgress() {
   const raised = parseFloat(wrap.dataset.raised || 0);
   document.getElementById('prog-collected').textContent = collected + ' млн ₸';
   document.getElementById('prog-goal').textContent = goal + ' млн ₸';
-  document.getElementById('prog-remaining').textContent = (goal - collected - raised).toFixed(0) + ' млн ₸';
+  document.getElementById('prog-remaining').textContent = (Math.round((goal - collected - raised) * 10) / 10).toLocaleString('ru-RU') + ' млн ₸';
   animateFill(document.getElementById('prog-fill'), ((collected + raised) / goal) * 100);
 }
 
