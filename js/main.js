@@ -37,6 +37,10 @@ function donateClientId() {
   }
 }
 
+function track(event, params, options) {
+  if (window.fbq) fbq('track', event, params, options);
+}
+
 async function requestKaspiLink(amount) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 5000);
@@ -48,7 +52,7 @@ async function requestKaspiLink(amount) {
     });
     if (!resp.ok) return null;
     const data = await resp.json();
-    return /^https:\/\/pay\.kaspi\.kz\//.test(data.url) ? data.url : null;
+    return /^https:\/\/pay\.kaspi\.kz\//.test(data.url) ? data : null;
   } catch (e) {
     return null;
   } finally {
@@ -56,19 +60,86 @@ async function requestKaspiLink(amount) {
   }
 }
 
+// Ожидание оплаты: Kaspi сам на сайт не возвращает, поэтому спрашиваем сервер,
+// и после оплаты ведём на страницу «Спасибо». Ссылку помним в localStorage,
+// чтобы продолжить проверку, когда человек вернётся из приложения Kaspi.
+const PENDING_KEY = 'donate-pending';
+const PENDING_TTL = 20 * 60 * 1000;
+let pollTimer = null;
+
+function getPending() {
+  try {
+    const p = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
+    return p && Date.now() - p.t < PENDING_TTL ? p : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function setPending(p) {
+  try {
+    if (p) localStorage.setItem(PENDING_KEY, JSON.stringify(p));
+    else localStorage.removeItem(PENDING_KEY);
+  } catch (e) {}
+}
+
+async function checkPending() {
+  const p = getPending();
+  if (!p) return stopPolling();
+  try {
+    const resp = await fetch(DONATE_API + '/status?id=' + encodeURIComponent(p.id), { cache: 'no-store' });
+    const data = await resp.json();
+    if (data.status === 'paid') {
+      setPending(null);
+      stopPolling();
+      window.location.href = 'thanks.html?id=' + encodeURIComponent(p.id);
+    } else if (data.status !== 'wait') {
+      setPending(null);
+      stopPolling();
+    }
+  } catch (e) {}
+}
+
+function startPolling() {
+  if (pollTimer || !getPending()) return;
+  checkPending();
+  pollTimer = setInterval(checkPending, 2500);
+}
+
+function stopPolling() {
+  clearInterval(pollTimer);
+  pollTimer = null;
+}
+
+window.addEventListener('pageshow', startPolling);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') startPolling();
+});
+
 document.querySelectorAll('.donate-amount[data-amount]').forEach(btn => {
   btn.addEventListener('click', async e => {
     e.preventDefault();
     if (btn.classList.contains('loading')) return;
+    const amount = Number(btn.dataset.amount);
+    track('InitiateCheckout', { value: amount, currency: 'KZT' });
     // На компьютере вкладку открываем сразу, иначе браузер заблокирует её как всплывающее окно
     const tab = isMobile ? null : window.open('', '_blank');
     if (tab) tab.opener = null;
     btn.classList.add('loading');
-    const url = (await requestKaspiLink(Number(btn.dataset.amount))) || btn.href;
+    const link = await requestKaspiLink(amount);
     btn.classList.remove('loading');
+    if (link) {
+      setPending({ id: link.id, amount, t: Date.now() });
+      startPolling();
+    }
+    const url = link ? link.url : btn.href;
     if (tab) tab.location.href = url;
     else window.location.href = url;
   });
+});
+
+document.querySelectorAll('.donate-other').forEach(a => {
+  a.addEventListener('click', () => track('InitiateCheckout', { currency: 'KZT' }));
 });
 
 function animateFill(fill, pct) {
