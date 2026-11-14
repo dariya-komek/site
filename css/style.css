@@ -935,6 +935,19 @@ footer {
 }
 .donate-other:hover { background: #b89ef5; border-color: #b89ef5; color: #fff; transform: translateY(-2px); }
 .donate-other img { width: 24px; height: 24px; border-radius: 6px; }
+.donate-other[hidden], .donate-custom[hidden] { display: none; }
+.donate-custom { display: flex; gap: 8px; }
+.donate-custom input {
+  flex: 1; min-width: 0; height: 50px; padding: 0 14px;
+  border: 2px solid #b89ef5; border-radius: 12px; background: #fff; color: #1a1a2e;
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px;
+}
+.donate-custom input:focus { outline: none; border-color: #4a2fa0; }
+.donate-custom button {
+  height: 50px; padding: 0 20px; border: 0; border-radius: 12px; cursor: pointer;
+  background: #4a2fa0; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px;
+}
+.donate-custom.loading { opacity: 0.6; pointer-events: none; }
 /* блик по кнопкам — «подсветка» */
 .donate-amount::after, .donate-other::after {
   content: ''; position: absolute; top: 0; left: -75%;

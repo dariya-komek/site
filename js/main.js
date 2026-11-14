@@ -116,30 +116,47 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') startPolling();
 });
 
+async function payWithKaspi(amount, fallbackUrl, el) {
+  if (el.classList.contains('loading')) return;
+  track('InitiateCheckout', { value: amount, currency: 'KZT' });
+  // На компьютере вкладку открываем сразу, иначе браузер заблокирует её как всплывающее окно
+  const tab = isMobile ? null : window.open('', '_blank');
+  if (tab) tab.opener = null;
+  el.classList.add('loading');
+  const link = await requestKaspiLink(amount);
+  el.classList.remove('loading');
+  if (link) {
+    setPending({ id: link.id, amount, t: Date.now() });
+    startPolling();
+  }
+  const url = link ? link.url : fallbackUrl;
+  if (tab) tab.location.href = url;
+  else window.location.href = url;
+}
+
 document.querySelectorAll('.donate-amount[data-amount]').forEach(btn => {
-  btn.addEventListener('click', async e => {
+  btn.addEventListener('click', e => {
     e.preventDefault();
-    if (btn.classList.contains('loading')) return;
-    const amount = Number(btn.dataset.amount);
-    track('InitiateCheckout', { value: amount, currency: 'KZT' });
-    // На компьютере вкладку открываем сразу, иначе браузер заблокирует её как всплывающее окно
-    const tab = isMobile ? null : window.open('', '_blank');
-    if (tab) tab.opener = null;
-    btn.classList.add('loading');
-    const link = await requestKaspiLink(amount);
-    btn.classList.remove('loading');
-    if (link) {
-      setPending({ id: link.id, amount, t: Date.now() });
-      startPolling();
-    }
-    const url = link ? link.url : btn.href;
-    if (tab) tab.location.href = url;
-    else window.location.href = url;
+    payWithKaspi(Number(btn.dataset.amount), btn.href, btn);
   });
 });
 
-document.querySelectorAll('.donate-other').forEach(a => {
-  a.addEventListener('click', () => track('InitiateCheckout', { currency: 'KZT' }));
+// «Другая сумма»: вместо обычной ссылки показываем поле для суммы
+document.querySelectorAll('.donate-other').forEach(link => {
+  const form = link.nextElementSibling;
+  if (!form || !form.classList.contains('donate-custom')) return;
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    link.hidden = true;
+    form.hidden = false;
+    form.querySelector('input').focus();
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const amount = Math.round(Number(form.querySelector('input').value));
+    if (!(amount >= 100 && amount <= 1000000)) return;
+    payWithKaspi(amount, link.href, form);
+  });
 });
 
 function animateFill(fill, pct) {
