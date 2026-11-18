@@ -1,6 +1,22 @@
 const isKz = document.documentElement.lang === 'kk';
 
+const COPY_NAMES = { halykNum: 'copy_halyk', freedomNum: 'copy_freedom', kaspiNum: 'copy_kaspi', phoneNum: 'copy_phone' };
+const copyTracked = {};
+function trackCopy(id) {
+  const name = COPY_NAMES[id];
+  if (!name || copyTracked[name]) return;
+  copyTracked[name] = true;
+  track('InitiateCheckout', { content_name: name, content_category: 'requisites', currency: 'KZT' });
+}
+document.addEventListener('copy', () => {
+  const node = window.getSelection && window.getSelection().anchorNode;
+  const el = node && (node.nodeType === 1 ? node : node.parentElement);
+  const value = el && el.closest('.payment-card') && el.closest('.payment-card').querySelector('.value[id]');
+  if (value) trackCopy(value.id);
+});
+
 function copyText(id, btn) {
+  trackCopy(id);
   const text = document.getElementById(id).innerText.replace(/\s/g, '');
   navigator.clipboard.writeText(text).then(() => {
     const orig = btn.innerText;
@@ -118,7 +134,7 @@ document.addEventListener('visibilitychange', () => {
 
 async function payWithKaspi(amount, fallbackUrl, el) {
   if (el.classList.contains('loading')) return;
-  track('InitiateCheckout', { value: amount, currency: 'KZT' });
+  track('InitiateCheckout', { value: amount, currency: 'KZT', content_name: 'kaspi_button', content_category: 'kaspi' });
   // На компьютере вкладку открываем сразу, иначе браузер заблокирует её как всплывающее окно
   const tab = isMobile ? null : window.open('', '_blank');
   if (tab) tab.opener = null;
